@@ -4,7 +4,7 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     container_name: keycloak
-    command: start
+    command: start-dev
     restart: unless-stopped
     ports:
       - "8180:8080"
@@ -29,6 +29,8 @@ services:
       # --- Cấu hình Reverse Proxy ---
       - KC_PROXY=edge
       - KC_HOSTNAME=${KEYCLOAK_HOSTNAME}
+      - KC_HOSTNAME_STRICT=false
+      - KC_HOSTNAME_STRICT_HTTPS=false
       - KC_HTTP_ENABLED=true
 
   postgres:
